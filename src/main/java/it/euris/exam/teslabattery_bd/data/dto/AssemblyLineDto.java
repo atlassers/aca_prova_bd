@@ -20,12 +20,14 @@ import lombok.NoArgsConstructor;
 public class AssemblyLineDto implements Dto {
 
   private String id;
+  private String name;
   private String timeToComplete;
 
   @Override
   public AssemblyLine toModel() {
     return AssemblyLine.builder()
         .id(UT.toLong(id))
+        .name(name)
         .timeToComplete(UT.toLong(timeToComplete))
         .build();
   }

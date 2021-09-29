@@ -44,6 +44,9 @@ public class AssemblyLine implements Model {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Column(name = "name")
+  private String name;
+  
   @Column(name = "time_to_complete")
   private Long timeToComplete;
   
@@ -74,6 +77,7 @@ public class AssemblyLine implements Model {
   public AssemblyLineDto toDto() {
     return AssemblyLineDto.builder()
         .id(UT.toString(id))
+        .name(name)
         .timeToComplete(UT.toString(timeToComplete))
         .build();
   }
