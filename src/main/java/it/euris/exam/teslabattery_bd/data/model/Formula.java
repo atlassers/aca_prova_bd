@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.euris.exam.teslabattery_bd.data.archetype.Model;
-import it.euris.exam.teslabattery_bd.data.dto.ComponentDto;
+import it.euris.exam.teslabattery_bd.data.dto.FormulaDto;
 import it.euris.exam.teslabattery_bd.utils.UT;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,10 +32,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "component")
-@SQLDelete(sql = "UPDATE Component SET deleted = true WHERE id=?")
+@Table(name = "formula")
+@SQLDelete(sql = "UPDATE Formula SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
-public class Component implements Model {
+public class Formula implements Model {
 
   @Id
   @Column(name = "id")
@@ -43,24 +45,24 @@ public class Component implements Model {
   @Column(name = "name")
   private String name;
 
-  @Column(name = "dangerous")
-  private Boolean dangerous;
-
   @Column(name = "deleted")
   @Builder.Default
   private Boolean deleted = false;
 
-  @OneToMany(mappedBy = "component")
+  @OneToMany(mappedBy = "formula")
   @Builder.Default
   @JsonIgnore
-  private Set<FormulaComponent> formulaComponents = new HashSet<FormulaComponent>(); 
+  private Set<FormulaComponent> formulaComponents = new HashSet<FormulaComponent>();   
+  
+  @ManyToOne
+  @JoinColumn(name = "assembly_line_id", nullable = false)
+  private AssemblyLine assemblyLine;
   
   @Override
-  public ComponentDto toDto() {
-    return ComponentDto.builder()
+  public FormulaDto toDto() {
+    return FormulaDto.builder()
         .id(UT.toString(id))
         .name(name)
-        .dangerous(UT.toString(dangerous))
         .build();
   }
 }

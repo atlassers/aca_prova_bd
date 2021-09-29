@@ -1,6 +1,8 @@
 package it.euris.exam.teslabattery_bd.utils;
 
 import java.time.Instant;
+import it.euris.exam.teslabattery_bd.enums.ComponentQuantityType;
+import it.euris.exam.teslabattery_bd.enums.RobotTask;
 
 /**
  * @author Busterna Davide
@@ -17,8 +19,32 @@ public class UT {
     return s == null ? null : Long.parseLong(s);
   }
 
+  public static Double toDouble(String s) {
+    return s == null ? null : Double.parseDouble(s);
+  }
+
   public static Boolean toBoolean(String s) {
     return s == null ? null : Boolean.valueOf(s);
+  }
+
+  public static ComponentQuantityType toComponentQantityType(String s) {
+    if (s == null)
+      return null;
+    for (ComponentQuantityType type : ComponentQuantityType.values()) {
+      if (type.name().equals(s))
+        return type;
+    }
+    return null;
+  }
+
+  public static RobotTask toRobotTask(String s) {
+    if (s == null)
+      return null;
+    for (RobotTask type : RobotTask.values()) {
+      if (type.name().equals(s))
+        return type;
+    }
+    return null;
   }
 
   public static Instant toInstant(String s) {
