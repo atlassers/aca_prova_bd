@@ -20,4 +20,6 @@ public interface ProductionCycleService {
   public List<ProductionCycleMonthAmount> getCompletedByMonth();
   public List<ProductionCycleMonthAmount> getFaildedByMonth();
   public List<ProductionCycleMonthAmount> getAllByMonth();
+  
+  public Double getSuccessRate();
 }

@@ -72,4 +72,13 @@ public class ProductionCycleServiceImpl implements ProductionCycleService {
   public List<ProductionCycleMonthAmount> getAllByMonth(){
     return productionCycleRepository.getAllByMonth();
   }
+  
+  @Override
+  public Double getSuccessRate() {
+    Long success = productionCycleRepository.getAmountByStatus(ProductionCycleStatus.COMPLETATO);
+    Long all = productionCycleRepository.getTotalAmount();
+    if (all == 0)
+      return 0.0;
+    return success.doubleValue() / all.doubleValue() * 100.0;
+  }
 }

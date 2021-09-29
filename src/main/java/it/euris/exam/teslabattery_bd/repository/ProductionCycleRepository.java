@@ -18,7 +18,7 @@ public interface ProductionCycleRepository extends JpaRepository<ProductionCycle
   @Query(value = ""
       + "SELECT MONTHNAME(pc.endDate) as month, COUNT(pc.id) as amount "
       + "FROM ProductionCycle pc "
-      + "WHERE status=:status "
+      + "WHERE pc.status=:status "
       + "GROUP BY MONTH(pc.endDate) "
       + "ORDER BY MONTH(pc.endDate)")
   public List<ProductionCycleMonthAmount> getAmountByMonth(@Param("status") ProductionCycleStatus status);
@@ -29,4 +29,15 @@ public interface ProductionCycleRepository extends JpaRepository<ProductionCycle
       + "GROUP BY MONTH(pc.endDate) "
       + "ORDER BY MONTH(pc.endDate)")
   public List<ProductionCycleMonthAmount> getAllByMonth();
+  
+  @Query(value = ""
+      + "SELECT COUNT(pc.id)"
+      + "FROM ProductionCycle pc "
+      + "WHERE pc.status=:status")
+  public Long getAmountByStatus(@Param("status") ProductionCycleStatus status);
+  
+  @Query(value = ""
+      + "SELECT COUNT(pc.id) "
+      + "FROM ProductionCycle pc")
+  public Long getTotalAmount();
 }

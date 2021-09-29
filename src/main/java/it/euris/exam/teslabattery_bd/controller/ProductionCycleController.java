@@ -65,4 +65,9 @@ public class ProductionCycleController {
   public List<ProductionCycleMonthAmount> getAllByMonth() {
     return productionCycleService.getAllByMonth();
   }
+  
+  @GetMapping("/v1/success-rate")
+  public Double getSuccessRate() {
+    return productionCycleService.getSuccessRate();
+  }
 }
