@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -54,8 +55,9 @@ public class Formula implements Model {
   @JsonIgnore
   private Set<FormulaComponent> formulaComponents = new HashSet<FormulaComponent>();   
   
-  @ManyToOne
-  @JoinColumn(name = "assembly_line_id", nullable = false)
+  @OneToOne
+  @JoinColumn(name = "assembly_line_id", referencedColumnName = "id", nullable = false)
+  @JsonIgnore
   private AssemblyLine assemblyLine;
   
   @Override

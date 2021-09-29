@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -43,6 +45,15 @@ public class AssemblyLine implements Model {
   @Column(name = "deleted")
   @Builder.Default
   private Boolean deleted = false;
+  
+  @OneToOne(mappedBy = "assemblyLine")
+  @JsonIgnore
+  Formula formula;
+  
+  @OneToMany(mappedBy = "assemblyLine")
+  @Builder.Default
+  @JsonIgnore
+  List<ProductionCycle> productionCycle = new ArrayList<ProductionCycle>();
   
   @ManyToMany
   @JoinTable(
