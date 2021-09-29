@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author Busterna Davide
- *
  * @since 2021-09-29
  */
 

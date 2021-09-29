@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author Busterna Davide
- *
  * @since 2021-09-29
  */
 

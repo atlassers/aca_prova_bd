@@ -14,7 +14,6 @@ import com.google.common.collect.ImmutableList;
 
 /**
  * @author Busterna Davide
- *
  * @since 2021-09-29
  */
 
