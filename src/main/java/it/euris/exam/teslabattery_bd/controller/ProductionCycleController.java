@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import it.euris.exam.teslabattery_bd.data.dto.ProductionCycleDto;
+import it.euris.exam.teslabattery_bd.repository.projection.ProductionCycleMonthAmount;
 import it.euris.exam.teslabattery_bd.service.ProductionCycleService;
 
 /**
@@ -48,5 +49,20 @@ public class ProductionCycleController {
   @DeleteMapping("/v1/{id}")
   public Boolean delete(@PathVariable("id") Long id) {
     return productionCycleService.delete(id);
+  }
+  
+  @GetMapping("/v1/completed-by-month")
+  public List<ProductionCycleMonthAmount> getCompletedByMonth() {
+    return productionCycleService.getCompletedByMonth();
+  }
+  
+  @GetMapping("/v1/failed-by-month")
+  public List<ProductionCycleMonthAmount> getFaildedByMonth() {
+    return productionCycleService.getFaildedByMonth();
+  }
+  
+  @GetMapping("/v1/all-by-month")
+  public List<ProductionCycleMonthAmount> getAllByMonth() {
+    return productionCycleService.getAllByMonth();
   }
 }

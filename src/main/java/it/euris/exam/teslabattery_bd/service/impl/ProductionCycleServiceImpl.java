@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import it.euris.exam.teslabattery_bd.data.dto.ProductionCycleDto;
 import it.euris.exam.teslabattery_bd.data.model.ProductionCycle;
+import it.euris.exam.teslabattery_bd.enums.ProductionCycleStatus;
 import it.euris.exam.teslabattery_bd.exception.IdMustBeNullException;
 import it.euris.exam.teslabattery_bd.exception.IdMustNotBeNullException;
 import it.euris.exam.teslabattery_bd.repository.ProductionCycleRepository;
+import it.euris.exam.teslabattery_bd.repository.projection.ProductionCycleMonthAmount;
 import it.euris.exam.teslabattery_bd.service.ProductionCycleService;
 
 /**
@@ -54,5 +56,20 @@ public class ProductionCycleServiceImpl implements ProductionCycleService {
   public Boolean delete(Long id) {
     productionCycleRepository.deleteById(id);
     return productionCycleRepository.findById(id).isEmpty();
+  }
+  
+  @Override
+  public List<ProductionCycleMonthAmount> getCompletedByMonth() {
+    return productionCycleRepository.getAmountByMonth(ProductionCycleStatus.COMPLETATO);
+  }
+
+  @Override
+  public List<ProductionCycleMonthAmount> getFaildedByMonth() {
+    return productionCycleRepository.getAmountByMonth(ProductionCycleStatus.FALLITO);
+  }
+
+  @Override
+  public List<ProductionCycleMonthAmount> getAllByMonth(){
+    return productionCycleRepository.getAllByMonth();
   }
 }

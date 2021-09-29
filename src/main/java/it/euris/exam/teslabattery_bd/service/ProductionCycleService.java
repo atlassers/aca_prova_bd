@@ -2,6 +2,7 @@ package it.euris.exam.teslabattery_bd.service;
 
 import java.util.List;
 import it.euris.exam.teslabattery_bd.data.dto.ProductionCycleDto;
+import it.euris.exam.teslabattery_bd.repository.projection.ProductionCycleMonthAmount;
 
 /**
  * @author Busterna Davide
@@ -15,4 +16,8 @@ public interface ProductionCycleService {
   public ProductionCycleDto add(ProductionCycleDto productionCycleDto);
   public ProductionCycleDto update(ProductionCycleDto productionCycleDto);
   public Boolean delete(Long id);
+  
+  public List<ProductionCycleMonthAmount> getCompletedByMonth();
+  public List<ProductionCycleMonthAmount> getFaildedByMonth();
+  public List<ProductionCycleMonthAmount> getAllByMonth();
 }

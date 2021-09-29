@@ -56,6 +56,10 @@ public class ProductionCycle implements Model {
   @Column(name = "end_date")
   private Instant endDate;
   
+  @Column(name = "deleted")
+  @Builder.Default
+  private Boolean deleted = false;
+  
   @ManyToOne
   @JoinColumn(name = "assembly_line_id", nullable = false)
   @JsonIgnore
