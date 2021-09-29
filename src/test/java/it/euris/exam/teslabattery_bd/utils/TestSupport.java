@@ -77,6 +77,7 @@ public class TestSupport {
   public static AssemblyLine createAssemblyLine(Long id) {
     return AssemblyLine.builder()
         .id(id)
+        .name("Linea di creazione batterie AAA")
         .timeToComplete(100L)
         .build();
   }

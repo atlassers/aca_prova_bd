@@ -1,5 +1,6 @@
 package it.euris.exam.teslabattery_bd.data.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.euris.exam.teslabattery_bd.data.archetype.Dto;
 import it.euris.exam.teslabattery_bd.data.model.ProductionCycle;
 import it.euris.exam.teslabattery_bd.utils.UT;
@@ -24,6 +25,9 @@ public class ProductionCycleDto implements Dto {
   private String status;
   private String statusDate;
   private String endDate;
+  
+  @JsonIgnore
+  private AssemblyLineDto assemblyLine;
 
   @Override
   public ProductionCycle toModel() {
@@ -33,6 +37,7 @@ public class ProductionCycleDto implements Dto {
         .status(UT.toProductionCycleStatus(status))
         .statusDate(UT.toInstant(statusDate))
         .endDate(UT.toInstant(endDate))
+        .assemblyLine(assemblyLine == null ? null : assemblyLine.toModel())
         .build();
   }
 }
