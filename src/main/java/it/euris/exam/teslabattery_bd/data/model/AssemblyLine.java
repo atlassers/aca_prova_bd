@@ -24,6 +24,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author Busterna Davide
+ * @since 2021-09-29
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
