@@ -8,6 +8,6 @@ import it.euris.exam.teslabattery_bd.data.model.AssemblyLine;
  * @since 2021-09-29
  */
 
-public interface AsseblyLineRepository extends JpaRepository<AssemblyLine, Long> {
+public interface AssemblyLineRepository extends JpaRepository<AssemblyLine, Long> {
 
 }
