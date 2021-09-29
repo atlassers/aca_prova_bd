@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     http.cors().and().csrf().disable().authorizeRequests()
         .antMatchers("/actuator/*", "/swagger-ui.html**", "/webjars/**", "/v3/**").authenticated()
 
-        
+        .antMatchers("/components/**").hasRole("supervisor")
         
         .and()
         .httpBasic();
@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     final CorsConfiguration configuration = new CorsConfiguration();
 
     configuration.setAllowedOrigins(ImmutableList.of("*"));
-    configuration.setAllowedMethods(ImmutableList.of("GET", "POST", "PUT", "DELETE"));
+    configuration.setAllowedMethods(ImmutableList.of("GET", "POST", "PUT")); // DELETE has been disabled
     configuration.setAllowCredentials(false);
     configuration
         .setAllowedHeaders(ImmutableList.of("Authorization", "Cache-Control", "Content-Type"));
