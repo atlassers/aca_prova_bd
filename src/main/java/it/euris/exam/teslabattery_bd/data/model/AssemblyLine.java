@@ -1,5 +1,7 @@
 package it.euris.exam.teslabattery_bd.data.model;
 
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.Column;
@@ -71,7 +73,7 @@ public class AssemblyLine implements Model {
       )
   @Builder.Default
   @JsonIgnore
-  private List<Robot> robots = new ArrayList<Robot>();
+  private Set<Robot> robots = new HashSet<Robot>();
   
   @Override
   public AssemblyLineDto toDto() {

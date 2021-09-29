@@ -1,7 +1,7 @@
 package it.euris.exam.teslabattery_bd.data.model;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -60,7 +60,7 @@ public class Robot implements Model {
   @ManyToMany(mappedBy = "robots")
   @Builder.Default
   @JsonIgnore
-  private List<AssemblyLine> assemblyLines = new ArrayList<AssemblyLine>();
+  private Set<AssemblyLine> assemblyLines = new HashSet<AssemblyLine>();
   
   @Override
   public RobotDto toDto() {

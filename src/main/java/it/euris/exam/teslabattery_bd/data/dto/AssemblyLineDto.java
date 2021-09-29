@@ -38,7 +38,7 @@ public class AssemblyLineDto implements Dto {
         .build();
     
     if (robots != null)
-      assemblyLine.setRobots(robots.stream().map(RobotDto::toModel).collect(Collectors.toList()));
+      assemblyLine.setRobots(robots.stream().map(RobotDto::toModel).collect(Collectors.toSet()));
     
     return assemblyLine;
   }

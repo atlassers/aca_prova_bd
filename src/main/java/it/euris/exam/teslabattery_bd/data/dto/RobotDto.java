@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.euris.exam.teslabattery_bd.data.archetype.Dto;
-import it.euris.exam.teslabattery_bd.data.model.AssemblyLine;
 import it.euris.exam.teslabattery_bd.data.model.Robot;
 import it.euris.exam.teslabattery_bd.utils.UT;
 import lombok.AllArgsConstructor;
@@ -28,7 +27,6 @@ public class RobotDto implements Dto {
   private String position;
   private String model;
   
-  @JsonIgnore
   private List<AssemblyLineDto> assemblyLines;
 
   @Override
@@ -41,7 +39,7 @@ public class RobotDto implements Dto {
         .build();
     
     if (assemblyLines != null)
-      robot.setAssemblyLines(assemblyLines.stream().map(AssemblyLineDto::toModel).collect(Collectors.toList()));
+      robot.setAssemblyLines(assemblyLines.stream().map(AssemblyLineDto::toModel).collect(Collectors.toSet()));
     
     return robot;
   }
